@@ -10,7 +10,16 @@ package AlgoritmoDavies;
  * @author v
  */
 public class sumDG {
-    public void resSumDG(){
+    public double[] resSumDG(double[] distanciasE, int[][] grupos){
+        double[] resultadoSDG =  new double[distanciasE.length];                      
+        for (int i = 0; i < resultadoSDG.length; i++) {
+            resultadoSDG[i] = (distanciasE[i]/grupos[i].length);
+        }
         
+        for (int i = 0; i < resultadoSDG.length; i++) {
+            System.out.println(resultadoSDG[i]);
+        }
+        
+        return resultadoSDG;
     }
 }

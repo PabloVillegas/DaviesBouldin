@@ -17,7 +17,8 @@ public class CalcularAlgoritmoDB {
         centros cen = new centros();
         formarGrupos fg = new formarGrupos();
         distanciaEuclidiana de = new distanciaEuclidiana();
-        algoritmosCH ach = new algoritmosCH();        
+        algoritmosCH ach = new algoritmosCH();
+        sumDG sdg = new sumDG();
         //Creacion Variables
         int nObjetos;
         int nAtributos;
@@ -40,6 +41,7 @@ public class CalcularAlgoritmoDB {
         //------Distancia euclidiana
         double[] distanciasE = new double[nGrupos];
         distanciasE = de.distanciaEuclidianas(distanciasE,grupos,objetos,cGrupos);
+        sdg.resSumDG(distanciasE, grupos);
         /*for(int i = 0; i < distanciasE.length; i++){
             System.out.println(distanciasE[i]+" ");
         }*/
