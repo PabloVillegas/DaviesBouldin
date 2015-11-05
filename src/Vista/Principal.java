@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import Clases.Convertir;
 
 
 /**
@@ -169,6 +170,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado:"));
 
         jButton1.setText("Aplicar índice");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setText("DB:");
@@ -256,7 +262,7 @@ public class Principal extends javax.swing.JFrame {
                     String[] fila = text1.split(" ");
                     objetosS[l] = fila;
                     l++;                   
-                    System.out.println(Arrays.toString(fila));
+                    //System.out.println(Arrays.toString(fila));
                 }                                
                 
                 noObjetos.setText(""+objetosS.length);
@@ -310,6 +316,12 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se cargo arff");
         }
     }//GEN-LAST:event_cargarGruposOActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Convertir conv = new Convertir();
+        conv.convertirObjetos(objetosS);
+        conv.convertirGruposObjetos(gruposOS);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
