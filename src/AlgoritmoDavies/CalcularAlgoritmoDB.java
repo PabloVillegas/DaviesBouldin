@@ -2,6 +2,7 @@ package AlgoritmoDavies;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -21,35 +22,38 @@ public class CalcularAlgoritmoDB {
         int nObjetos;
         int nAtributos;
         int nGrupos;
-        double [] cGlobal;
-        //int [][] grupos;
+        
         
         //-----Objetos-------------------
         nObjetos = objetos.length;
         nAtributos = objetos[0].length;
-        cGlobal = cen.centros(objetos);
-        Double[] cGlobalT = new Double [cGlobal.length];
-        for(int i = 0; i< cGlobal.length; i++){
-            cGlobalT[i] = cGlobal[i];
-        }
+        
+        
         //----Grupos
         nGrupos = grupos.length;
         double [][] cGrupos = new double[nGrupos][nAtributos];
         //--Formar Grupos
-        cGrupos=fg.formarGrupos(cGrupos,grupos, objetos);        
+        cGrupos=fg.formarGrupos(cGrupos,grupos, objetos); 
+        /*for (int i = 0; i < cGrupos.length; i++) {
+            System.out.println(Arrays.toString(cGrupos[i]));
+        }*/
         //------Distancia euclidiana
         double[] distanciasE = new double[nGrupos];
         distanciasE = de.distanciaEuclidianas(distanciasE,grupos,objetos,cGrupos);
-        //---------Distancia euclidiana Cnetros centros
+        /*for(int i = 0; i < distanciasE.length; i++){
+            System.out.println(distanciasE[i]+" ");
+        }*/
+        /*//---------Distancia euclidiana Cnetros centros
         double[] distanciasCC = new double [cGrupos.length];
-        distanciasCC = de.distanciaECentros(distanciasCC, cGlobalT, cGrupos);
+        //distanciasCC = de.distanciaECentros(distanciasCC, cGlobalT, cGrupos);
         //--------Resultado algoritmo
         double aNumerador;
         double aDenominador;
         aNumerador = ach.algoritmoNumerador(nObjetos, nGrupos, grupos, distanciasCC);
         aDenominador = ach.algoritmoDenominador(nGrupos, distanciasE);
 
-        return (aNumerador/aDenominador);
+        return (aNumerador/aDenominador);*/
+        return 0;
     }
 
 

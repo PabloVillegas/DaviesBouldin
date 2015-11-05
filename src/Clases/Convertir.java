@@ -28,9 +28,9 @@ public class Convertir {
             }
         }
         
-        for (int i = 0; i < objetosD.length; i++) {
+        /*for (int i = 0; i < objetosD.length; i++) {
             System.out.println(Arrays.toString(objetosD[i]));
-        }
+        }*/
         return objetosD;
     }
     
@@ -43,9 +43,9 @@ public class Convertir {
             }
         }
         
-        for (int i = 0; i < objetosG.length; i++) {
+        /*for (int i = 0; i < objetosG.length; i++) {
             System.out.println(Arrays.toString(objetosG[i]));
-        }
+        }*/
         
         return objetosG;
     }
