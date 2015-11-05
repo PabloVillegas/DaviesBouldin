@@ -37,13 +37,14 @@ public class Principal extends javax.swing.JFrame {
     private FileNameExtensionFilter filter;
     int returnVal;
     String[][] objetosS;
+    String[][] gruposOS;
     
     
     public Principal() {
         this.archivo1 = null;
-        this.archivo2 = null;
+        //this.archivo2 = null;
         this.lector1=null;
-        this.lector2=null;
+        //this.lector2=null;
         this.chooser = new JFileChooser("");      
         this.filter = new FileNameExtensionFilter("Archivo txt", "txt");      
         this.chooser.setFileFilter(filter);
@@ -132,6 +133,11 @@ public class Principal extends javax.swing.JFrame {
 
         cargarGruposO.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         cargarGruposO.setText("Cargar");
+        cargarGruposO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarGruposOActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("No. Grupos:");
 
@@ -237,22 +243,24 @@ public class Principal extends javax.swing.JFrame {
                 // se carga el archivo y se leee linea por linea
                 archivo1 = chooser.getSelectedFile();
                 lector1 = new BufferedReader(new FileReader(archivo1));
-                String text1 = null;
-                String[][] objetosT = null;
+                String text1 = null;                
                 int i = 0;
+                while ((text1 = lector1.readLine()) != null) {                                   
+                    i++;
+                }
+                //System.out.println(i);
+                objetosS = new String[i][];
+                int l = 0;
+                lector1 = new BufferedReader(new FileReader(archivo1));
                 while ((text1 = lector1.readLine()) != null) {
                     String[] fila = text1.split(" ");
-                    objetosT[i] = fila;
-                    i++;
-                    //System.out.println(Arrays.toString(fila));
-                }
+                    objetosS[l] = fila;
+                    l++;                   
+                    System.out.println(Arrays.toString(fila));
+                }                                
                 
-                for (int j = 0; j < objetosT.length; j++) {
-                    for (int k = 0; k < objetosT[i].length; k++) {
-                        System.out.print(objetosT[j][k] + " ");
-                    }
-                    System.out.println("");
-                }
+                noObjetos.setText(""+objetosS.length);
+                noAtributos.setText(""+objetosS[0].length);
                 
                 JOptionPane.showMessageDialog(this, "Objetos Cargados");
             } catch (FileNotFoundException ex) {
@@ -264,6 +272,44 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se cargo arff");
         }
     }//GEN-LAST:event_cargarObjetosActionPerformed
+
+    private void cargarGruposOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarGruposOActionPerformed
+        //Se abre el cargador del archivo
+        this.returnVal = chooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                // se carga el archivo y se leee linea por linea
+                archivo1 = chooser.getSelectedFile();
+                lector1 = new BufferedReader(new FileReader(archivo1));
+                String text1 = null;                
+                int i = 0;
+                while ((text1 = lector1.readLine()) != null) {                                   
+                    i++;
+                }
+                //System.out.println(i);
+                gruposOS = new String[i][];
+                int l = 0;
+                lector1 = new BufferedReader(new FileReader(archivo1));
+                while ((text1 = lector1.readLine()) != null) {
+                    String[] fila = text1.split(" ");
+                    gruposOS[l] = fila;
+                    l++;                   
+                    //System.out.println(Arrays.toString(fila));
+                }                                
+                
+                noGrupos.setText(""+gruposOS.length);
+                
+                
+                JOptionPane.showMessageDialog(this, "Objetos Cargados");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No se cargo arff");
+        }
+    }//GEN-LAST:event_cargarGruposOActionPerformed
 
     /**
      * @param args the command line arguments
